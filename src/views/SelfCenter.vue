@@ -304,7 +304,7 @@
       }
     },
     created() {
-      if(this.$store.state.userType==='顾客') {
+      if(this.$store.state.userType==='客户') {
         this.getList()
       }
 

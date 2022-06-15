@@ -260,7 +260,7 @@
               //alert(this.Toid);
             })
             .catch(function () {
-              alert("404 not found");
+              alert("load_chatter: 404 not found");
             });
       },
       send(text){
@@ -312,25 +312,21 @@
           this.$axios.post("/Chat/getmessageList", {cid:this.Fromid,sid:this.Toid})
               .then(res => {
                 this.messageList=[];
-                if(res.data.messageList.length === 0){
-                  alert("no message now");
-                }
-                else{
-                  for(let i = 0; i<res.data.messageList.length;i++) {
-                    let temp = res.data.messageList[i];
-                    this.messageList.push({
-                      id: i,
-                      content: temp.content,
-                      type: temp.type,
-                      time: temp.time,
-                      isEnd: temp.isEnd
-                    })
-                  }
+
+                for(let i = 0; i<res.data.messageList.length;i++) {
+                  let temp = res.data.messageList[i];
+                  this.messageList.push({
+                    id: i,
+                    content: temp.content,
+                    type: temp.type,
+                    time: temp.time,
+                    isEnd: temp.isEnd
+                  })
                 }
 
               })
               .catch(function () {
-                alert("404 not found");
+                alert("getmessageList: 404 not found");
               });
         }
         else{
@@ -348,7 +344,7 @@
                 }
               })
               .catch(function () {
-                alert("404 not found");
+                alert("getmessageList: 404 not found");
               });
         }
       },

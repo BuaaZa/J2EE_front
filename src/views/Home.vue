@@ -2,14 +2,13 @@
   <div>
     <el-container :style="'height:'+bodyHeight+'px'">
       <el-main style="padding: 0" v-loading.fullscreen.lock="fullscreenLoading">
-        <img alt="item" src="../assets/1.jpg" width="100%"/>
+        <img alt="item" src="../assets/img1.png" width="100%" height="400px"/>
         <el-tabs value="first" stretch >
           <el-tab-pane label="介绍" name="first">
-            <h1> 欢迎来到“Oops!”车辆服务管理系统™</h1>
-            <h3> 我们提供最好的车辆服务 </h3>
+            <h1> 欢迎来到航校车综合服务平台™</h1>
             <el-link @click="$router.push('/Login')" type="primary" v-if="this.$store.state.userType==='游客'">登录</el-link>
             <span style="font-size: 13px" v-if="this.$store.state.userType==='游客'">来获取更多功能</span>
-            <h3 v-else> 您已登录，OVSMS为您服务 </h3>
+            <h3 v-else> 您已登录，航校车为您服务 </h3>
           </el-tab-pane>
           <el-tab-pane label="当前车次" name="second">
             <div>
@@ -84,7 +83,7 @@
                   <el-table-column align="center" prop="other" label="备注" min-width="8"/>
                   <el-table-column align="center" v-if="this.$store.state.userType==='客户'" label="预约上车" min-width="8">
                     <el-tooltip slot-scope="scope" class="item" effect="dark" content="预定该车次" placement="top">
-                      <el-button v-on:click="reserve(scope.row.num)" type="info" size="mini" >预定</el-button>
+                      <el-button v-on:click="reserve(scope.row.num)" type="primary" size="mini" >预定</el-button>
                     </el-tooltip>
                   </el-table-column>
                 </el-table>
@@ -94,7 +93,7 @@
           <el-tab-pane label="全站通知" name="third">
             <el-collapse style="padding: 10px;margin-left: 20%;margin-right: 20%">
               <el-collapse-item title="热烈庆祝开发完成" name="1">
-                <div>OVSMS开发完成啦啊啦啦啦</div>
+                <div>航校车开发完成啦啊啦啦啦</div>
                 <div>保持了我们一贯的风格呢</div>
               </el-collapse-item>
               <el-collapse-item title="预定系统上线" name="2">
@@ -198,21 +197,26 @@
                               .catch(res => {
                                 this.fullscreenLoading = false;
                                 this.$router.push('/')
+                                console.log("serving")
+                                console.log(res.data)
                               })
                         })
                         .catch(res => {
                           this.fullscreenLoading=false;
                           this.$router.push('/')
+                          console.log("drivers")
                         })
                   })
                   .catch(res => {
                     this.fullscreenLoading=false;
                     this.$router.push('/')
+                    console.log("vehicles")
                   })
             })
             .catch(res => {
               this.fullscreenLoading=false;
               this.$router.push('/')
+              console.log("lines")
             })
       },
       routeCopy (a){
